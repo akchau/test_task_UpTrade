@@ -1,11 +1,14 @@
-{% if section.top_section %}
-    <a href={% url 'tree:menu' section.top_section.slug %}>{{ section.top_section.name }}</a>
-    <br>
+{% if tree %}
+    {% for branch in tree %}
+        {% for item in branch %}
+            <a href={% url 'tree:menu' item.slug %}>{{ item.name }}</a>
+            <br>
+        {% endfor %}
+    {% endfor %}
 {% endif %}
-{{ section.name }}
-{% if section.down_sections %}
-    {% for down_section in section.down_sections %}
-        <br>
-        <a href={% url 'tree:menu' down_section.slug %}>{{ down_section.name }}</a>
+{{ current_section.name }}
+{% if down_sections %}
+    {% for down_section in down_sections %}
+        <br><a href={% url 'tree:menu' down_section.slug %}>{{ down_section.name }}</a>
     {% endfor %}
 {% endif %}

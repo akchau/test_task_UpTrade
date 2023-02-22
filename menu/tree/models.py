@@ -21,7 +21,10 @@ class Section(models.Model):
         blank=True,
         null=True,
         on_delete=models.CASCADE,
-        related_name='down_section',
+        related_name='down_sections',
         verbose_name='Родительская секция',
         help_text='Укажите родительскую секцию'
     )
+
+    def __str__(self):
+        return self.name
