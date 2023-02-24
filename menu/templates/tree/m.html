@@ -1,6 +1,7 @@
 {% if tree %}
     {% for branch in tree %}
         {% for section in branch %}
+
             {% include 'tree/includes/not_active_section.html' %}
             <br>
         {% endfor %}
@@ -12,3 +13,15 @@
         <br>{% include 'tree/includes/not_active_section.html' %}
     {% endfor %}
 {% endif %}
+
+{{ menu.name }}
+{% for sections in levels %}
+    {% for section in sections %}
+        {% if request.path  == section.slug %}
+            {% include "tree/includes/active_section.html"%}
+        {% else %}
+            {% include 'tree/includes/not_active_section.html' %}
+        {% endif %}
+        <br>
+    {% endfor %}
+{% endfor %}

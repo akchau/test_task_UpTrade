@@ -1,0 +1,21 @@
+{% load draw_menu_tag %}
+<ul>
+  {% for section in sections %}
+    {% if section in active_top_sections %}
+        <li>{% include "tree/includes/active_section.html" %}</li>
+        {% if levels|length > 1 %}
+            {% include "tree/includes/tree.html" with sections=levels|last levels=levels|pop %}
+        {% endif %}
+    {% endif %}
+    {% if request.path|cut:"/" == section.slug %}
+      <li>{% include "tree/includes/active_section.html"%}</li>
+      <ul>
+        {% for section in down_sections %}
+          <li>{% include 'tree/includes/not_active_section.html' %}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <li>{% include 'tree/includes/not_active_section.html' %}</li>
+    {% endif %}
+  {% endfor %}
+</ul>

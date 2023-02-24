@@ -4,6 +4,7 @@
 """
 from django.contrib import admin
 
-from .models import Section
+from .models import Menu, Section
 
 admin.site.register(Section)
+admin.site.register(Menu)
