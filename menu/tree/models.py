@@ -2,12 +2,26 @@
 from django.db import models
 
 
+class Menu(models.Model):
+    """Меню"""
+    name = models.CharField(
+        "Название",
+        max_length=200,
+        unique=True,
+        help_text="Укажите название",
+    )
+
+    def __str__(self):
+        return self.name
+
+
 class Section(models.Model):
     """Секция меню"""
     name = models.CharField(
         "Название",
         max_length=200,
         unique=True,
+        help_text="Укажите имя секции",
     )
     slug = models.SlugField(
         "Адресс секции",

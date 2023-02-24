@@ -1,14 +1,14 @@
 {% if tree %}
     {% for branch in tree %}
-        {% for item in branch %}
-            <a href={% url 'tree:menu' item.slug %}>{{ item.name }}</a>
+        {% for section in branch %}
+            {% include 'tree/includes/not_active_section.html' %}
             <br>
         {% endfor %}
     {% endfor %}
 {% endif %}
-{{ current_section.name }}
+{% include "tree/includes/active_section.html" with section=current_section %}
 {% if down_sections %}
-    {% for down_section in down_sections %}
-        <br><a href={% url 'tree:menu' down_section.slug %}>{{ down_section.name }}</a>
+    {% for section in down_sections %}
+        <br>{% include 'tree/includes/not_active_section.html' %}
     {% endfor %}
 {% endif %}
