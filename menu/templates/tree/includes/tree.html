@@ -6,15 +6,14 @@
         {% if levels|length > 1 %}
             {% include "tree/includes/tree.html" with sections=levels|last levels=levels|pop %}
         {% endif %}
-    {% endif %}
-    {% if request.path|cut:"/" == section.slug %}
+    {% elif request.path|cut:"/" == section.slug %}
       <li>{% include "tree/includes/active_section.html"%}</li>
       <ul>
         {% for section in down_sections %}
           <li>{% include 'tree/includes/not_active_section.html' %}</li>
         {% endfor %}
       </ul>
-    {% else %}
+    {% elif section not in active_top_sections %}
       <li>{% include 'tree/includes/not_active_section.html' %}</li>
     {% endif %}
   {% endfor %}
