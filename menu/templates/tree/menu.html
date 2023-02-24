@@ -1,14 +1,2 @@
-{% if tree %}
-    {% for branch in tree %}
-        {% for section in branch %}
-            {% include 'tree/includes/not_active_section.html' %}
-            <br>
-        {% endfor %}
-    {% endfor %}
-{% endif %}
-{% include "tree/includes/active_section.html" with section=current_section %}
-{% if down_sections %}
-    {% for section in down_sections %}
-        <br>{% include 'tree/includes/not_active_section.html' %}
-    {% endfor %}
-{% endif %}
+<h1>{{ menu.name }}</h1>
+{% include 'tree/includes/tree.html' with section=levels|first %}
