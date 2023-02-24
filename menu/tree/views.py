@@ -3,6 +3,11 @@ from django.shortcuts import render
 from .models import Menu
 
 
+def index(request):
+    template = "base.html"
+    return render(request, template)
+
+
 def draw_menu(request, slug):
 
     def get_all_level(section):
@@ -12,20 +17,18 @@ def draw_menu(request, slug):
     current_section = menu.sections.get(slug=slug)
     down_sections = current_section.down_sections.all()
 
-    sections = menu.sections.filter(top_section=None)
+    top_sections = menu.sections.filter(top_section=None)
     active_top_sections = []
-    levels = [sections]
+    levels = [top_sections]
     section = current_section
     while section.top_section:
         active_top_sections.append(section.top_section)
         levels.append(get_all_level(section))
         section = section.top_section
-    print(levels)
-    print(active_top_sections)
     template = "tree/menu.html"
     context = {
         'menu': menu,
-        'sections': sections,
+        'sections': top_sections,
         'down_sections': down_sections,
         'levels': levels,
         'active_top_sections': active_top_sections
