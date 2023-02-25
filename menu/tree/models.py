@@ -27,13 +27,14 @@ class Section(models.Model):
         "Название",
         max_length=200,
         unique=True,
-        help_text="Укажите имя секции",
+        help_text="Укажите человекочитаемое имя секции меню.",
     )
-    slug = models.SlugField(
+    adress = models.CharField(
         "Адресс секции",
         max_length=200,
         unique=True,
-        help_text="Укажите адресс секции",
+        help_text="Укажите адресс секции без /",
+        blank=True
     )
     top_section = models.ForeignKey(
         'self',
@@ -43,14 +44,18 @@ class Section(models.Model):
         on_delete=models.CASCADE,
         related_name='down_sections',
         verbose_name='Родительская секция',
-        help_text='Укажите родительскую секцию'
+        help_text=('Укажите родительскую секцию. '
+                   'Если родительская секция не будет '
+                   'указана - секция появится в корне меню.'),
     )
     menu = models.ForeignKey(
         Menu,
         on_delete=models.CASCADE,
         related_name='sections',
         verbose_name='Меню секции',
-        help_text='Укажите к какому меню относится'
+        help_text=('Укажите к какому меню относится. '
+                   'Выбранная верхняя секция должна '
+                   'относится к выбраному меню!'),
     )
 
     def __str__(self):
