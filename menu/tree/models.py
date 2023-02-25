@@ -1,4 +1,5 @@
 """В этом модуле описана модель секции меню."""
+from django.core.exceptions import ValidationError
 from django.db import models
 
 
@@ -57,6 +58,12 @@ class Section(models.Model):
                    'Выбранная верхняя секция должна '
                    'относится к выбраному меню!'),
     )
+
+    def clean(self):
+        if (self.top_section not in self.menu.sections.all()
+           and self.top_section):
+            raise ValidationError(
+                "Родительская секция должна быть из указанного менню")
 
     def __str__(self):
         return self.name

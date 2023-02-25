@@ -13,7 +13,7 @@ def index(request):
     return render(request, template, context)
 
 
-def test_func(request):
+def test_func(request, any=None):
     """
     Любая другая страница с адресом.
     Сюда будет направляться любой запрос

@@ -12,4 +12,6 @@ urlpatterns = [
     path("contact_accountant/", test_func, name="contact_accountant"),
     path("contact_managers/", test_func, name="contact_managers"),
     path("contact_ceo/", test_func, name="contact_ceo"),
+    path("contacts/physycal_person/", test_func, name="physycal_person"),
+    path("<str:any>/", test_func, name="any"),
 ]

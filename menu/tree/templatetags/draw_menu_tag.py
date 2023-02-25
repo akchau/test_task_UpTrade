@@ -41,7 +41,7 @@ def draw_menu(context, slug):
     down_sections = None
     active_top_sections = []
     levels = []
-
+    current_section = None
     # получаем данные о запросе для определения активной секции
     request = context['request']
     # ищем активную секцию
