@@ -8,7 +8,6 @@ class Menu(models.Model):
     name = models.CharField(
         "Название",
         max_length=200,
-        unique=True,
         help_text="Укажите название",
     )
     slug = models.SlugField(
@@ -21,13 +20,16 @@ class Menu(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Меню"
+        verbose_name_plural = "Меню"
+
 
 class Section(models.Model):
     """Секция меню"""
     name = models.CharField(
         "Название",
         max_length=200,
-        unique=True,
         help_text="Укажите человекочитаемое имя секции меню.",
     )
     adress = models.CharField(
@@ -64,6 +66,13 @@ class Section(models.Model):
            and self.top_section):
             raise ValidationError(
                 "Родительская секция должна быть из указанного менню")
+        if self.menu.sections.filter(name=self.name).exists():
+            raise ValidationError(
+                "В таком меню уже есть такая секция")
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = "Секция"
+        verbose_name_plural = "Секции"
