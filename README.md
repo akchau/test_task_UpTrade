@@ -1,4 +1,4 @@
-# test_task_UpTrade
+# tree (Menu for Django app)
 Решение тестового задания для вакансии Junior Python Backend Developer
 
 # ТЗ:
