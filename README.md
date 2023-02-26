@@ -24,8 +24,9 @@
 # Реализация
 В проекте `menu` два приложения.
 
-`tree` - приложение с меню. Здесь есть шаблоны для отрисовки меню. Для редактированиия дизайна шаблонов просто добавьте ваши классы в [шаблонах](https://github.com/akchau/test_task_UpTrade/tree/main/menu/tree/templates/tree).
-
+`tree` - приложение с меню. Здесь есть шаблоны для отрисовки меню. Для редактированиия дизайна шаблонов просто добавьте ваши классы в [шаблонах](https://github.com/akchau/test_task_UpTrade/tree/main/menu/tree/templates/tree). 
+В кастомном теге [draw_menu](https://github.com/akchau/test_task_UpTrade/blob/main/menu/tree/templatetags/draw_menu_tag.py#L20) производится запрос к БД и с помощью [шаблонов](https://github.com/akchau/test_task_UpTrade/tree/main/menu/tree/templates/tree) `menu` `tree` производится отрисовка меню. Для подключения кастомного тега добавьте в ваш шаблон `{% load draw_menu_tag %}`. (В тестовом приложении в шаблоне [base.html](https://github.com/akchau/test_task_UpTrade/blob/main/menu/test_app/templates/base.html#L2) уже добавлены два меню - `main_menu`, `pay_menu`.
+ 
 `test_app` - приложение для демонстрации меню
 
 `menu` - настройки проекта
