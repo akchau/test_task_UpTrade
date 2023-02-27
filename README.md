@@ -63,6 +63,26 @@ INSTALLED_APPS = [
      ...
     'tree.apps.TreeConfig',
 ```
+Проверьте чтобы в настройках проекта был включен поиск шаблонов на уровне приложения. В данном примере подключен поиск шаблонов в папке /templates на уровне проекта и приложения.
+```python
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [TEMPLATES_DIR],
+        'APP_DIRS': True, # Должно стоять True !!!
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+```
 
 # Настройка меню через админку
 После подключения к проекту перейдите на http://127.0.0.1:8000/admin/ и войдите в админ-зону.
