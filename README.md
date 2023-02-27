@@ -120,6 +120,14 @@ python manage.py loaddata fixtures.json
 
 *Все адреса кроме главного  в тестовом приложении работают через функцию test_func, она дополнительно выводит адресс и named_url для упрощения отладки*
 
+## Добавить новый адрес
+Сейчас в нижнем меню следующая структура
+![image](https://user-images.githubusercontent.com/96063513/221572538-3183fc30-c1dd-4e46-9f46-fdd9f646e000.png)
+
+Добавьте через админ-зону новый адресс.
+![image](https://user-images.githubusercontent.com/96063513/221573684-142b2cfb-0e44-41cf-a096-1c4c8a87fcb6.png)
+
+
 `menu` - настройки проекта
 
 Дерево-меню реализовано с помощью связанного списка (см. [menu/tree/models.py](https://github.com/akchau/test_task_UpTrade/blob/main/menu/tree/models.py#L42)) через указание родительской директории для каждой секции `top_section`, и рекурсивного вызова шаблона `tree.html` (см. [menu/tree/templates/tree/includes/tree.html](https://github.com/akchau/test_task_UpTrade/blob/main/menu/tree/templates/tree/includes/tree.html#L8)) в случае нахождения активных родительских категорий текущего уровня для отрисовки вложенного уровня, пока не дойдем до активного уровня. После нахождения активного уронвня, отрисовывается его уровень и один уровень ниже. Это позволяет делать один запрос к БД при загрузке страницы.
