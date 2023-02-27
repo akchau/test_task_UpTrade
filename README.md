@@ -115,6 +115,9 @@ path(
 ```bash
 python manage.py loaddata fixtures.json
 ```
+Тестовая база показывает позволяет отрисовать два меню `Главное меню` и `Контакты`
+![image](https://user-images.githubusercontent.com/96063513/221571455-a029075c-ce8c-4c11-b092-1fc434adf3c8.png)
+
 
 `menu` - настройки проекта
 
