@@ -102,7 +102,7 @@ urlpatterns = [
 
 ![image](https://user-images.githubusercontent.com/96063513/221572538-3183fc30-c1dd-4e46-9f46-fdd9f646e000.png)
 
-Добавьте через админ-зону новый адрес и сохраните.
+Добавьте через админ-зону новый адрес и сохраните. [Тут](https://github.com/akchau/test_task_UpTrade/blob/main/README.md#настройка-меню-через-админку) правила добавления в админку
 
 ![image](https://user-images.githubusercontent.com/96063513/221578330-b489d03a-2b0b-45a7-b8d3-74f2899b87c2.png)
 
