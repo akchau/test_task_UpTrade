@@ -1,0 +1,13 @@
+{% if link %}
+    <a href={% url section.adress %}>
+{% endif %}
+{% if active %}
+    <b>
+{% endif %}
+{{ section.name }}
+{% if active %}
+    </b>
+{% endif %}
+{% if link %}
+    </a>
+{% endif %}

@@ -86,6 +86,6 @@ def draw_menu(context, slug):
         'active_top_sections': active_top_sections,
 
         # текущая секция
-        'current_section': current_section
+        'current_section': current_section,
     }
     return context

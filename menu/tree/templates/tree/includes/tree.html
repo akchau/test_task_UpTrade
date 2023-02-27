@@ -3,15 +3,15 @@
   {% for section in sections %}
     <li>
       {% if section in active_top_sections %}
-        {% include "tree/includes/active_section.html" %}
+        {% include "tree/includes/section.html"  with active=True link=True %}
           {% if levels|length > 0 %}
             {% include "tree/includes/tree.html" with sections=levels|last levels=levels|pop %}
           {% endif %}
       {% elif current_section == section %}
-        {% include "tree/includes/active_section.html"%}
-        {% include "tree/includes/one_down_level.html"%}
+        {% include "tree/includes/section.html" with active=True link=False %}
+        {% include "tree/includes/one_down_level.html" %}
       {% elif section not in active_top_sections %}
-        {% include 'tree/includes/not_active_section.html' %}
+        {% include 'tree/includes/section.html' with active=False link=True %}
       {% endif %}
     </li>
   {% endfor %}
