@@ -56,7 +56,7 @@
 
 
 # Подключение к проекту
-Для добавления меню в проект необходимо добавить папку `tree` и зарегестрировать новое приложение в `you_project.you_project.settings.py`.
+Для добавления меню в проект необходимо скопировать папку `tree` и зарегестрировать новое приложение в `you_project.you_project.settings.py`.
 ```python
 # you_project.you_project.settings.py
 INSTALLED_APPS = [
@@ -83,6 +83,14 @@ TEMPLATES = [
     },
 ]
 ```
+Выполните миграции
+```bash
+python manage.py makemigrations
+python manage.py migrate
+
+```
+
+Далее по инструкции ниже наполнить админку
 
 # Настройка меню через админку
 После подключения к проекту перейдите на http://127.0.0.1:8000/admin/ и войдите в админ-зону.
