@@ -14,5 +14,15 @@ urlpatterns = [
     path("contact_ceo/", test_func, name="contact_ceo"),
     path("requisites/physycal_person/", test_func, name="physycal_person"),
     path("requisites/legal_entity/", test_func, name="legal_entity"),
+    path("requisites/legal_entity/pay/", test_func, name="legal_entity_pay"),
+    path(
+        "requisites/physycal_person/pay",
+        test_func,
+
+        # адрес для самостоятельного добавления в меню
+        name="physycal_person_pay"
+    ),
+
     path("<str:any>/", test_func, name="any"),
+
 ]

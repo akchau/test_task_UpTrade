@@ -24,18 +24,4 @@ class MenuAdmin(admin.ModelAdmin):
     list_filter = ('name', 'slug')
 
 
-class SectionAdmin(admin.ModelAdmin):
-    """Отображение секции меню."""
-    empty_value_display = 'root'
-    list_display = (
-        'name',
-        'adress',
-        'top_section',
-        'menu',
-    )
-    search_fields = ('name', 'adress', 'top_section', 'menu')
-    list_filter = ('menu',)
-
-
-admin.site.register(Section, SectionAdmin)
 admin.site.register(Menu, MenuAdmin)

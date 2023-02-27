@@ -8,13 +8,16 @@ class Menu(models.Model):
     name = models.CharField(
         "Название",
         max_length=200,
-        help_text="Укажите название",
+        help_text="Укажите название меню.",
     )
     slug = models.SlugField(
         "Адресс меню",
         max_length=200,
         unique=True,
-        help_text="Укажите адресс меню",
+        help_text=(
+            "Укажите адресс меню.",
+            "Допустимые символы 0-9 A-Z a-z - _"
+            )
     )
 
     def __str__(self):
@@ -35,9 +38,10 @@ class Section(models.Model):
     adress = models.CharField(
         "Адресс секции",
         max_length=200,
-        unique=True,
-        help_text="Укажите адресс секции без /",
-        blank=True
+        help_text=(
+            "Укажите адресс секции в формате",
+            "`namespace:name`. Без кавычек."
+        )
     )
     top_section = models.ForeignKey(
         'self',
@@ -66,9 +70,6 @@ class Section(models.Model):
            and self.top_section):
             raise ValidationError(
                 "Родительская секция должна быть из указанного менню")
-        if self.menu.sections.filter(name=self.name).exists():
-            raise ValidationError(
-                "В таком меню уже есть такая секция")
 
     def __str__(self):
         return self.name
@@ -76,3 +77,13 @@ class Section(models.Model):
     class Meta:
         verbose_name = "Секция"
         verbose_name_plural = "Секции"
+        constraints = [
+            models.UniqueConstraint(
+                fields=['name', 'menu'],
+                name='name_menu'
+            ),
+            models.UniqueConstraint(
+                fields=['adress', 'menu'],
+                name='adress_menu'
+            )
+        ]
