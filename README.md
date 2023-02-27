@@ -50,6 +50,54 @@ python manage.py runserver
 python manage.py loaddata fixtures.json
 ```
 
+### Тестовый проект
+Для демонстрации работы меню в репозитории содержится тестовое приложение. В него уже добавлены адреса.
+```python
+urlpatterns = [
+    path("", index, name="index"),
+    path("contacts/", test_func, name="contacts"),
+    path("contact_warehouse/", test_func, name="contact_warehouse"),
+    path("contact_office/", test_func, name="contact_office"),
+    path("contact_accountant/", test_func, name="contact_accountant"),
+    path("contact_managers/", test_func, name="contact_managers"),
+    path("contact_ceo/", test_func, name="contact_ceo"),
+    path("requisites/physycal_person/", test_func, name="physycal_person"),
+    path("requisites/legal_entity/", test_func, name="legal_entity"),
+    path("requisites/legal_entity/pay/", test_func, name="legal_entity_pay"),
+    path(
+        "requisites/physycal_person/pay",
+        test_func,
+        name="physycal_person_pay"
+    ),
+    path("<str:any>/", test_func, name="any"),
+
+```
+В базу добавлены все адреса кроме одного. Этот адрес предлагается добавить вручную для демонстрации процесса добавления:
+```python
+path(
+        "requisites/physycal_person/pay",
+        test_func,
+        name="physycal_person_pay"
+    ),
+```
+
+Тестовая база показывает позволяет отрисовать два меню `Главное меню` и `Наши реквизиты`
+![image](https://user-images.githubusercontent.com/96063513/221571455-a029075c-ce8c-4c11-b092-1fc434adf3c8.png)
+
+*Все адреса кроме главного  в тестовом приложении работают через функцию test_func, она дополнительно выводит адресс и named_url для упрощения отладки*
+
+## Добавить новый адрес
+Сейчас в нижнем меню следующая структура
+
+![image](https://user-images.githubusercontent.com/96063513/221572538-3183fc30-c1dd-4e46-9f46-fdd9f646e000.png)
+
+Добавьте через админ-зону новый адресс.
+
+![image](https://user-images.githubusercontent.com/96063513/221578330-b489d03a-2b0b-45a7-b8d3-74f2899b87c2.png)
+
+Перейдите по сслыке и увидите новый пункт меню
+
+![image](https://user-images.githubusercontent.com/96063513/221578767-c60bbb18-2be7-4920-905e-9c14bf5df47f.png)
 
 
 
@@ -110,56 +158,7 @@ python manage.py runserver
 При запросе на отрисовку из любого шаблона проекта передается `slug` меню. Тег для отрисовки - `draw_menu`. Для подключения кастомного тега добавьте в ваш шаблон `{% load draw_menu_tag %}`. 
 (В тестовом приложении в шаблоне [base.html](https://github.com/akchau/test_task_UpTrade/blob/main/menu/test_app/templates/base.html#L2) уже добавлены два меню - `main_menu`, `pay_menu`.
 
-`test_app` - приложение для демонстрации меню. Для демонстрации работы меню в репозитории содержится тестовое приложение. В него уже добавлены адреса.
-```python
-urlpatterns = [
-    path("", index, name="index"),
-    path("contacts/", test_func, name="contacts"),
-    path("contact_warehouse/", test_func, name="contact_warehouse"),
-    path("contact_office/", test_func, name="contact_office"),
-    path("contact_accountant/", test_func, name="contact_accountant"),
-    path("contact_managers/", test_func, name="contact_managers"),
-    path("contact_ceo/", test_func, name="contact_ceo"),
-    path("requisites/physycal_person/", test_func, name="physycal_person"),
-    path("requisites/legal_entity/", test_func, name="legal_entity"),
-    path("requisites/legal_entity/pay/", test_func, name="legal_entity_pay"),
-    path(
-        "requisites/physycal_person/pay",
-        test_func,
-        name="physycal_person_pay"
-    ),
-    path("<str:any>/", test_func, name="any"),
-
-```
-В базу добавлены все адреса кроме одного. Этот адрес предлагается добавить вручную для демонстрации процесса добавления:
-```python
-path(
-        "requisites/physycal_person/pay",
-        test_func,
-        name="physycal_person_pay"
-    ),
-```
-Загрузите тестовую БД
-```bash
-python manage.py loaddata fixtures.json
-```
-Тестовая база показывает позволяет отрисовать два меню `Главное меню` и `Наши реквизиты`
-![image](https://user-images.githubusercontent.com/96063513/221571455-a029075c-ce8c-4c11-b092-1fc434adf3c8.png)
-
-*Все адреса кроме главного  в тестовом приложении работают через функцию test_func, она дополнительно выводит адресс и named_url для упрощения отладки*
-
-## Добавить новый адрес
-Сейчас в нижнем меню следующая структура
-
-![image](https://user-images.githubusercontent.com/96063513/221572538-3183fc30-c1dd-4e46-9f46-fdd9f646e000.png)
-
-Добавьте через админ-зону новый адресс.
-
-![image](https://user-images.githubusercontent.com/96063513/221578330-b489d03a-2b0b-45a7-b8d3-74f2899b87c2.png)
-
-Перейдите по сслыке и увидите новый пункт меню
-
-![image](https://user-images.githubusercontent.com/96063513/221578767-c60bbb18-2be7-4920-905e-9c14bf5df47f.png)
+`test_app` - приложение для демонстрации меню.
 
 Дерево-меню реализовано с помощью связанного списка (см. [menu/tree/models.py](https://github.com/akchau/test_task_UpTrade/blob/main/menu/tree/models.py#L42)) через указание родительской директории для каждой секции `top_section`, и рекурсивного вызова шаблона `tree.html` (см. [menu/tree/templates/tree/includes/tree.html](https://github.com/akchau/test_task_UpTrade/blob/main/menu/tree/templates/tree/includes/tree.html#L8)) в случае нахождения активных родительских категорий текущего уровня для отрисовки вложенного уровня, пока не дойдем до активного уровня. После нахождения активного уронвня, отрисовывается его уровень и один уровень ниже. Это позволяет делать один запрос к БД при загрузке страницы.
 
