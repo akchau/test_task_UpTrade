@@ -18,7 +18,35 @@
 - Django
 - Python
 
-# Запуск проекта в виртуальном окружении venv
+# Подготовка окружения тестового проекта
+Склонируйте репозиторий
+```bash
+git clone git@github.com:akchau/test_task_UpTrade.git
+```
+Перейдите в папку и активируйте виртуальное окружение
+```bash
+cd test_task_UpTrade/
+python -m pip install --upgrade pip
+python -m venv venv
+source venv/Scripts/activate
+```
+Установите необходимые зависимости проекта
+```bash
+pip install -r requirements.txt
+```
+Выполните миграции
+```bash
+cd menu
+python manage.py makemigrations
+python manage.py migrate
+```
+Запустите проект
+```bash
+python manage.py runserver
+```
+
+
+
 
 # Подключение к проекту
 Для добавления меню в проект необходимо скопировать папку `tree` и зарегестрировать новое приложение в `you_project.you_project.settings.py`.
