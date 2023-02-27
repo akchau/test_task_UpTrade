@@ -1,5 +1,5 @@
 # tree 
-###*(Menu for Django app)*
+### *(Menu for Django app)*
 Решение тестового задания для вакансии Junior Python Backend Developer.
 
 # ТЗ:
