@@ -127,7 +127,7 @@ python manage.py loaddata fixtures.json
 
 Добавьте через админ-зону новый адресс.
 
-![image](https://user-images.githubusercontent.com/96063513/221576974-ecd1aa1b-3389-49cb-aa72-8d5968bed5c9.png)
+![image](https://user-images.githubusercontent.com/96063513/221578330-b489d03a-2b0b-45a7-b8d3-74f2899b87c2.png)
 
 
 `menu` - настройки проекта
