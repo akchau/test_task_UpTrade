@@ -80,8 +80,7 @@ path(
         name="physycal_person_pay"
     ),
 ```
-
-Тестовая база показывает позволяет отрисовать два меню `Главное меню` и `Наши реквизиты`
+В тестовой БД два меню `Главное меню` и `Наши реквизиты`
 ![image](https://user-images.githubusercontent.com/96063513/221571455-a029075c-ce8c-4c11-b092-1fc434adf3c8.png)
 
 *Все адреса кроме главного  в тестовом приложении работают через функцию test_func, она дополнительно выводит адресс и named_url для упрощения отладки*
@@ -148,7 +147,7 @@ python manage.py runserver
 - Нельзя создавать секции с одинаковыми `named_url` в одном меню.
 - Нельля задавать `named_url` который не зарегестирован в urlpatterns приложений проекта.
 - Нельзя указывать одно меню, а родительскую секцию из другого.
-
+Создайте новое меню и укажите секции которые будут относится к этому меню.
 
 # Реализация
 В проекте `menu` два приложения. И приложение `menu` с настройки проекта
@@ -156,9 +155,7 @@ python manage.py runserver
 `tree` - приложение с меню. Шаблоны для отрисовки меню находятся в папке `menu/tree/templates/tree`. Для редактированиия дизайна шаблонов просто добавьте ваши классы в [шаблонах](https://github.com/akchau/test_task_UpTrade/tree/main/menu/tree/templates/tree). 
 В кастомном теге [draw_menu](https://github.com/akchau/test_task_UpTrade/blob/main/menu/tree/templatetags/draw_menu_tag.py#L20) производится запрос к БД и с помощью [шаблонов](https://github.com/akchau/test_task_UpTrade/tree/main/menu/tree/templates/tree) `menu` и `tree` производится отрисовка меню. 
 При запросе на отрисовку из любого шаблона проекта передается `slug` меню. Тег для отрисовки - `draw_menu`. Для подключения кастомного тега добавьте в ваш шаблон `{% load draw_menu_tag %}`. 
-(В тестовом приложении в шаблоне [base.html](https://github.com/akchau/test_task_UpTrade/blob/main/menu/test_app/templates/base.html#L2) уже добавлены два меню - `main_menu`, `pay_menu`.
-
-`test_app` - приложение для демонстрации меню.
+(В тестовом приложении в шаблоне [base.html](https://github.com/akchau/test_task_UpTrade/blob/main/menu/test_app/templates/base.html#L2) уже добавлены два меню - `main_menu`, `pay_menu`).
 
 Дерево-меню реализовано с помощью связанного списка (см. [menu/tree/models.py](https://github.com/akchau/test_task_UpTrade/blob/main/menu/tree/models.py#L42)) через указание родительской директории для каждой секции `top_section`, и рекурсивного вызова шаблона `tree.html` (см. [menu/tree/templates/tree/includes/tree.html](https://github.com/akchau/test_task_UpTrade/blob/main/menu/tree/templates/tree/includes/tree.html#L8)) в случае нахождения активных родительских категорий текущего уровня для отрисовки вложенного уровня, пока не дойдем до активного уровня. После нахождения активного уронвня, отрисовывается его уровень и один уровень ниже. Это позволяет делать один запрос к БД при загрузке страницы.
 
