@@ -45,7 +45,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 ### Тестовое наполнение БД
-В приложении 
+В корне проекта заготовлен файл с дампом тестовой базы `fixtures.json`. 
 ```bash
 python manage.py loaddata fixtures.json
 ```
@@ -53,7 +53,7 @@ python manage.py loaddata fixtures.json
 
 
 
-# Подключение к проекту
+# Подключение к другому проекту
 Для добавления меню в проект необходимо скопировать папку `tree` и зарегестрировать новое приложение в `you_project.you_project.settings.py`.
 ```python
 # you_project.you_project.settings.py
@@ -131,7 +131,7 @@ urlpatterns = [
     path("<str:any>/", test_func, name="any"),
 
 ```
-В корне проекта заготовлен файл с дампом тестовой базы `fixtures.json`. В базу добавлены все адреса кроме одного. Этот адрес предлагается добавить вручную для демонстрации процесса добавления:
+В базу добавлены все адреса кроме одного. Этот адрес предлагается добавить вручную для демонстрации процесса добавления:
 ```python
 path(
         "requisites/physycal_person/pay",
