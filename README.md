@@ -44,6 +44,11 @@ python manage.py migrate
 ```bash
 python manage.py runserver
 ```
+### Тестовое наполнение БД
+В приложении 
+```bash
+python manage.py loaddata fixtures.json
+```
 
 
 
@@ -96,12 +101,6 @@ python manage.py runserver
 - Нельля задавать `named_url` который не зарегестирован в urlpatterns приложений проекта.
 - Нельзя указывать одно меню, а родительскую секцию из другого.
 
-
-# Тестовое наполнение БД
-В приложении 
-```bash
-python manage.py loaddata fixtures.json
-```
 
 # Реализация
 В проекте `menu` два приложения. И приложение `menu` с настройки проекта
