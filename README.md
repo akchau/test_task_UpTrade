@@ -76,7 +76,7 @@ python manage.py loaddata fixtures.json
 ```
 
 # Реализация
-В проекте `menu` два приложения.
+В проекте `menu` два приложения. И приложение `menu` с настройки проекта
 
 `tree` - приложение с меню. Шаблоны для отрисовки меню находятся в папке `menu/tree/templates/tree`. Для редактированиия дизайна шаблонов просто добавьте ваши классы в [шаблонах](https://github.com/akchau/test_task_UpTrade/tree/main/menu/tree/templates/tree). 
 В кастомном теге [draw_menu](https://github.com/akchau/test_task_UpTrade/blob/main/menu/tree/templatetags/draw_menu_tag.py#L20) производится запрос к БД и с помощью [шаблонов](https://github.com/akchau/test_task_UpTrade/tree/main/menu/tree/templates/tree) `menu` и `tree` производится отрисовка меню. 
@@ -129,8 +129,9 @@ python manage.py loaddata fixtures.json
 
 ![image](https://user-images.githubusercontent.com/96063513/221578330-b489d03a-2b0b-45a7-b8d3-74f2899b87c2.png)
 
+Перейдите по сслыке и увидите новый пункт меню
 
-`menu` - настройки проекта
+![image](https://user-images.githubusercontent.com/96063513/221578767-c60bbb18-2be7-4920-905e-9c14bf5df47f.png)
 
 Дерево-меню реализовано с помощью связанного списка (см. [menu/tree/models.py](https://github.com/akchau/test_task_UpTrade/blob/main/menu/tree/models.py#L42)) через указание родительской директории для каждой секции `top_section`, и рекурсивного вызова шаблона `tree.html` (см. [menu/tree/templates/tree/includes/tree.html](https://github.com/akchau/test_task_UpTrade/blob/main/menu/tree/templates/tree/includes/tree.html#L8)) в случае нахождения активных родительских категорий текущего уровня для отрисовки вложенного уровня, пока не дойдем до активного уровня. После нахождения активного уронвня, отрисовывается его уровень и один уровень ниже. Это позволяет делать один запрос к БД при загрузке страницы.
 
