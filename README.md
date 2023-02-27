@@ -122,9 +122,11 @@ python manage.py loaddata fixtures.json
 
 ## Добавить новый адрес
 Сейчас в нижнем меню следующая структура
+
 ![image](https://user-images.githubusercontent.com/96063513/221572538-3183fc30-c1dd-4e46-9f46-fdd9f646e000.png)
 
 Добавьте через админ-зону новый адресс.
+
 ![image](https://user-images.githubusercontent.com/96063513/221573684-142b2cfb-0e44-41cf-a096-1c4c8a87fcb6.png)
 
 
