@@ -52,9 +52,12 @@ TEMPLATES = [
 ```bash
 python manage.py makemigrations
 python manage.py migrate
-
 ```
-Далее по инструкции ниже наполнить админку
+Запустите проект
+```bash
+python manage.py runserver
+```
+Далее по инструкции ниже наполнить админку.
 
 # Настройка меню через админку
 После подключения к проекту перейдите на и войдите в [админ-зону](http://127.0.0.1:8000/admin/).
@@ -76,13 +79,38 @@ python manage.py loaddata fixtures.json
 В проекте `menu` два приложения.
 
 `tree` - приложение с меню. Шаблоны для отрисовки меню находятся в папке `menu/tree/templates/tree`. Для редактированиия дизайна шаблонов просто добавьте ваши классы в [шаблонах](https://github.com/akchau/test_task_UpTrade/tree/main/menu/tree/templates/tree). 
-
 В кастомном теге [draw_menu](https://github.com/akchau/test_task_UpTrade/blob/main/menu/tree/templatetags/draw_menu_tag.py#L20) производится запрос к БД и с помощью [шаблонов](https://github.com/akchau/test_task_UpTrade/tree/main/menu/tree/templates/tree) `menu` и `tree` производится отрисовка меню. 
-
 При запросе на отрисовку из любого шаблона проекта передается `slug` меню. Тег для отрисовки - `draw_menu`. Для подключения кастомного тега добавьте в ваш шаблон `{% load draw_menu_tag %}`. 
 (В тестовом приложении в шаблоне [base.html](https://github.com/akchau/test_task_UpTrade/blob/main/menu/test_app/templates/base.html#L2) уже добавлены два меню - `main_menu`, `pay_menu`.
- 
-`test_app` - приложение для демонстрации меню
+`test_app` - приложение для демонстрации меню. Для демонстрации работы меню в репозитории содержится тестовое приложение. В него уже добавлены адреса.
+```python
+urlpatterns = [
+    path("", index, name="index"),
+    path("contacts/", test_func, name="contacts"),
+    path("contact_warehouse/", test_func, name="contact_warehouse"),
+    path("contact_office/", test_func, name="contact_office"),
+    path("contact_accountant/", test_func, name="contact_accountant"),
+    path("contact_managers/", test_func, name="contact_managers"),
+    path("contact_ceo/", test_func, name="contact_ceo"),
+    path("requisites/physycal_person/", test_func, name="physycal_person"),
+    path("requisites/legal_entity/", test_func, name="legal_entity"),
+    path("requisites/legal_entity/pay/", test_func, name="legal_entity_pay"),
+    path(
+        "requisites/physycal_person/pay",
+        test_func,
+        name="physycal_person_pay"
+    ),
+    path("<str:any>/", test_func, name="any"),
+
+```
+В корне проекта заготовлен файл с дампом тестовой базы `fixtures.json`. В базу добавлены все адреса кроме одного. Этот адрес предлагается добавить вручную для демонстрации процесса добавления.
+```python
+path(
+        "requisites/physycal_person/pay",
+        test_func,
+        name="physycal_person_pay"
+    ),
+```
 
 `menu` - настройки проекта
 
