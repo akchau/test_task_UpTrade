@@ -23,6 +23,7 @@ urlpatterns = [
         name="physycal_person_pay"
     ),
 
+    # адрес для демонстрации работы меню с незарегестрированным адресом
     path("<str:any>/", test_func, name="any"),
 
 ]

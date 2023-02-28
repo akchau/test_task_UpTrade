@@ -1,6 +1,8 @@
 """В этом модуле описана модель секции меню."""
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.urls import reverse
+from django.urls.exceptions import NoReverseMatch
 
 
 class Menu(models.Model):
@@ -70,6 +72,14 @@ class Section(models.Model):
            and self.top_section):
             raise ValidationError(
                 "Родительская секция должна быть из указанного менню")
+        try:
+            reverse(self.adress)
+        except NoReverseMatch:
+            raise ValidationError(
+                "Такого адреса нет в проекте")
+        if self.top_section == self:
+            raise ValidationError(
+                "Ячейка не может быть родительской секцией для себя")
 
     def __str__(self):
         return self.name
